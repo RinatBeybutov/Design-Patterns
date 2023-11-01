@@ -3,11 +3,15 @@ package org.example;
 import Adapter.*;
 import Command.*;
 import Decorator.*;
+import Facade.*;
 import Factory.FactoryMethod.ChicagoPizzaStore;
 import Factory.FactoryMethod.NYPizzaStore;
 import Factory.SimpleFactory.Pizza;
 import Factory.SimpleFactory.PizzaStore;
 import Factory.SimpleFactory.SimplePizzaFactory;
+import TemplateMethod.CaffeineBeverage;
+import TemplateMethod.Coffee;
+import TemplateMethod.Tea;
 import junit.framework.TestCase;
 import Observer.CurrentConditionsDisplay;
 import Observer.ForecastDisplay;
@@ -186,5 +190,42 @@ public class AppTest extends TestCase {
         System.out.println("\n\tThe TurkeyAdapter says...");
         turkeyAdapter.quack();
         turkeyAdapter.fly();
+    }
+
+    public void testFacade() {
+        Amplifier amp = new Amplifier("Amplifier");
+        Tuner tuner = new Tuner("AM/FM Tuner", amp);
+        StreamingPlayer player = new StreamingPlayer("Streaming Player", amp);
+        Projector projector = new Projector("Projector", player);
+        TheaterLights lights = new TheaterLights("Theater Ceiling Lights");
+        Screen screen = new Screen("Theater Screen");
+        PopcornPopper popper = new PopcornPopper("Popcorn Popper");
+
+        HomeTheaterFacade homeTheater =
+                new HomeTheaterFacade(amp, tuner, player,
+                        projector, screen, lights, popper);
+
+        homeTheater.watchMovie("Raiders of the Lost Ark");
+        homeTheater.endMovie();
+    }
+
+    public void testTemplateMethod() {
+        CaffeineBeverage tea = new Tea();
+        CaffeineBeverage coffee = new Coffee();
+
+        System.out.println("\nMaking tea...");
+        tea.prepareRecipe();
+
+        System.out.println("\nMaking coffee...");
+        coffee.prepareRecipe();
+
+        /*TeaWithHook teaHook = new TeaWithHook();
+        CoffeeWithHook coffeeHook = new CoffeeWithHook();
+
+        System.out.println("\nMaking tea...");
+        teaHook.prepareRecipe();
+
+        System.out.println("\nMaking coffee...");
+        coffeeHook.prepareRecipe();*/
     }
 }
