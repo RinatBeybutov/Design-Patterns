@@ -1,16 +1,17 @@
 package org.example;
 
 import Decorator.*;
-import jdk.jfr.Name;
+import Factory.FactoryMethod.ChicagoPizzaStore;
+import Factory.FactoryMethod.NYPizzaStore;
+import Factory.SimpleFactory.Pizza;
+import Factory.SimpleFactory.PizzaStore;
+import Factory.SimpleFactory.SimplePizzaFactory;
 import junit.framework.TestCase;
-import org.example.Observer.CurrentConditionsDisplay;
-import org.example.Observer.ForecastDisplay;
-import org.example.Observer.StatisticsDisplay;
-import org.example.Observer.WeatherData;
+import Observer.CurrentConditionsDisplay;
+import Observer.ForecastDisplay;
+import Observer.StatisticsDisplay;
+import Observer.WeatherData;
 
-/**
- * Unit test for simple App.
- */
 public class AppTest extends TestCase {
 
     public void testObserver() {
@@ -41,5 +42,76 @@ public class AppTest extends TestCase {
         americanoPlusDoubleMochaAndVanilla = new Vanilla(americanoPlusDoubleMochaAndVanilla);
         System.out.println(String.format("%s $%s", americanoPlusDoubleMochaAndVanilla.getDescription(), americanoPlusDoubleMochaAndVanilla.cost()));
 
+    }
+
+    public void  testSimpleFactory() {
+        SimplePizzaFactory factory = new SimplePizzaFactory();
+        PizzaStore store = new PizzaStore(factory);
+
+        Pizza pizza = store.orderPizza("cheese");
+        System.out.println("We ordered a " + pizza.getName() + "\n");
+        System.out.println(pizza);
+
+        pizza = store.orderPizza("veggie");
+        System.out.println("We ordered a " + pizza.getName() + "\n");
+        System.out.println(pizza);
+    }
+
+    public void testFactoryMethod() {
+        Factory.FactoryMethod.PizzaStore nyStore = new NYPizzaStore();
+        Factory.FactoryMethod.PizzaStore chicagoStore = new ChicagoPizzaStore();
+
+        Factory.FactoryMethod.Pizza pizza = nyStore.orderPizza("cheese");
+        System.out.println("Ethan ordered a " + pizza.getName() + "\n");
+
+        pizza = chicagoStore.orderPizza("cheese");
+        System.out.println("Joel ordered a " + pizza.getName() + "\n");
+
+        pizza = nyStore.orderPizza("clam");
+        System.out.println("Ethan ordered a " + pizza.getName() + "\n");
+
+        pizza = chicagoStore.orderPizza("clam");
+        System.out.println("Joel ordered a " + pizza.getName() + "\n");
+
+        pizza = nyStore.orderPizza("pepperoni");
+        System.out.println("Ethan ordered a " + pizza.getName() + "\n");
+
+        pizza = chicagoStore.orderPizza("pepperoni");
+        System.out.println("Joel ordered a " + pizza.getName() + "\n");
+
+        pizza = nyStore.orderPizza("veggie");
+        System.out.println("Ethan ordered a " + pizza.getName() + "\n");
+
+        pizza = chicagoStore.orderPizza("veggie");
+        System.out.println("Joel ordered a " + pizza.getName() + "\n");
+    }
+
+    public void testAbstractFactory() {
+        Factory.AbstractFactory.PizzaStore nyStore = new Factory.AbstractFactory.NYPizzaStore();
+        Factory.AbstractFactory.PizzaStore chicagoStore = new Factory.AbstractFactory.ChicagoPizzaStore();
+
+        Factory.AbstractFactory.Pizza.Pizza pizza = nyStore.orderPizza("cheese");
+        System.out.println("Ethan ordered a " + pizza + "\n");
+
+        pizza = chicagoStore.orderPizza("cheese");
+        System.out.println("Joel ordered a " + pizza + "\n");
+
+        pizza = nyStore.orderPizza("clam");
+        System.out.println("Ethan ordered a " + pizza + "\n");
+
+        pizza = chicagoStore.orderPizza("clam");
+        System.out.println("Joel ordered a " + pizza + "\n");
+
+        pizza = nyStore.orderPizza("pepperoni");
+        System.out.println("Ethan ordered a " + pizza + "\n");
+
+        pizza = chicagoStore.orderPizza("pepperoni");
+        System.out.println("Joel ordered a " + pizza + "\n");
+
+        pizza = nyStore.orderPizza("veggie");
+        System.out.println("Ethan ordered a " + pizza + "\n");
+
+        pizza = chicagoStore.orderPizza("veggie");
+        System.out.println("Joel ordered a " + pizza + "\n");
     }
 }

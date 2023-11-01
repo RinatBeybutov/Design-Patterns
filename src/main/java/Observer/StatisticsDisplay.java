@@ -1,4 +1,4 @@
-package org.example.Observer;
+package Observer;
 
 public class StatisticsDisplay implements DisplayElement, Observer{
     private float maxTemp = 0.0f;

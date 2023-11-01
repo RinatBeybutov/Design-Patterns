@@ -1,4 +1,4 @@
-package org.example.Observer;
+package Observer;
 
 public class HeatIndexDisplay implements DisplayElement, Observer{
     float heatIndex = 0.0f;

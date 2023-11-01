@@ -1,4 +1,4 @@
-package org.example.Observer;
+package Observer;
 
 public class CurrentConditionsDisplay implements Observer, DisplayElement{
 

@@ -1,4 +1,4 @@
-package org.example.Observer;
+package Observer;
 
 public class ForecastDisplay implements Observer, DisplayElement{
     private float currentPressure = 29.92f;
