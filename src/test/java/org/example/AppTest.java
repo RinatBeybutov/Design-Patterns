@@ -1,5 +1,6 @@
 package org.example;
 
+import Adapter.*;
 import Command.*;
 import Decorator.*;
 import Factory.FactoryMethod.ChicagoPizzaStore;
@@ -167,5 +168,23 @@ public class AppTest extends TestCase {
         remoteControl.onButtonWasPushed(4);
         remoteControl.offButtonWasPushed(4);
         remoteControl.onButtonWasPushed(5);
+    }
+
+    public void testAdapter() {
+        Duck duck = new MallardDuck();
+        Turkey turkey = new WildTurkey();
+        Duck turkeyAdapter = new TurkeyAdapter(turkey);
+
+        System.out.println("\tThe Turkey says...");
+        turkey.gobble();
+        turkey.fly();
+
+        System.out.println("\n\tThe Duck says...");
+        duck.quack();
+        duck.fly();
+
+        System.out.println("\n\tThe TurkeyAdapter says...");
+        turkeyAdapter.quack();
+        turkeyAdapter.fly();
     }
 }
