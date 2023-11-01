@@ -9,6 +9,10 @@ import Factory.FactoryMethod.NYPizzaStore;
 import Factory.SimpleFactory.Pizza;
 import Factory.SimpleFactory.PizzaStore;
 import Factory.SimpleFactory.SimplePizzaFactory;
+import Iterator.CafeMenu;
+import Iterator.DinerMenu;
+import Iterator.PancakeHouseMenu;
+import Iterator.Waitress;
 import TemplateMethod.CaffeineBeverage;
 import TemplateMethod.Coffee;
 import TemplateMethod.Tea;
@@ -227,5 +231,31 @@ public class AppTest extends TestCase {
 
         System.out.println("\nMaking coffee...");
         coffeeHook.prepareRecipe();*/
+    }
+
+    public void testIterator() {
+        PancakeHouseMenu pancakeHouseMenu = new PancakeHouseMenu();
+        DinerMenu dinerMenu = new DinerMenu();
+        CafeMenu cafeMenu = new CafeMenu();
+
+        Waitress waitress = new Waitress(pancakeHouseMenu, dinerMenu, cafeMenu);
+
+        waitress.printMenu();
+        waitress.printVegetarianMenu();
+
+        System.out.println("\nCustomer asks, is the Hotdog vegetarian?");
+        System.out.print("Waitress says: ");
+        if (waitress.isItemVegetarian("Hotdog")) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
+        System.out.println("\nCustomer asks, are the Waffles vegetarian?");
+        System.out.print("Waitress says: ");
+        if (waitress.isItemVegetarian("Waffles")) {
+            System.out.println("Yes");
+        } else {
+            System.out.println("No");
+        }
     }
 }
