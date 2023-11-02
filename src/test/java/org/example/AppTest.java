@@ -2,6 +2,8 @@ package org.example;
 
 import Adapter.*;
 import Command.*;
+import Composite.MenuComponent;
+import Composite.MenuCreator;
 import Decorator.*;
 import Facade.*;
 import Factory.FactoryMethod.ChicagoPizzaStore;
@@ -13,14 +15,14 @@ import Iterator.CafeMenu;
 import Iterator.DinerMenu;
 import Iterator.PancakeHouseMenu;
 import Iterator.Waitress;
-import TemplateMethod.CaffeineBeverage;
-import TemplateMethod.Coffee;
-import TemplateMethod.Tea;
-import junit.framework.TestCase;
 import Observer.CurrentConditionsDisplay;
 import Observer.ForecastDisplay;
 import Observer.StatisticsDisplay;
 import Observer.WeatherData;
+import TemplateMethod.CaffeineBeverage;
+import TemplateMethod.Coffee;
+import TemplateMethod.Tea;
+import junit.framework.TestCase;
 
 public class AppTest extends TestCase {
 
@@ -257,5 +259,11 @@ public class AppTest extends TestCase {
         } else {
             System.out.println("No");
         }
+    }
+
+    public void testComposite() {
+        MenuComponent allMenus = MenuCreator.createMenu();
+        Composite.Waitress waitress = new Composite.Waitress(allMenus);
+        waitress.printMenu();
     }
 }
