@@ -19,6 +19,7 @@ import Observer.CurrentConditionsDisplay;
 import Observer.ForecastDisplay;
 import Observer.StatisticsDisplay;
 import Observer.WeatherData;
+import State.GumballMachine;
 import TemplateMethod.CaffeineBeverage;
 import TemplateMethod.Coffee;
 import TemplateMethod.Tea;
@@ -265,5 +266,47 @@ public class AppTest extends TestCase {
         MenuComponent allMenus = MenuCreator.createMenu();
         Composite.Waitress waitress = new Composite.Waitress(allMenus);
         waitress.printMenu();
+    }
+
+    public void testState() {
+        GumballMachine gumballMachine =
+                new GumballMachine(10);
+
+        System.out.println(gumballMachine);
+
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+
+        System.out.println(gumballMachine);
+
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+
+        System.out.println(gumballMachine);
+
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+
+        System.out.println(gumballMachine);
+
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+
+        System.out.println(gumballMachine);
+
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+        gumballMachine.insertQuarter();
+        gumballMachine.turnCrank();
+
+        System.out.println(gumballMachine);
     }
 }
